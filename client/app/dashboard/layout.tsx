@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Loader from "@/components/ui/Loader";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
-    const { status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const { error } = useToast();
   const [redirecting, setRedirecting] = useState(false);
@@ -20,13 +20,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         router.replace("/auth/login");
       }, 1500);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, router]);
 
   if (status === "loading" || redirecting) {
     return <Loader />;
   }
-  return (
-        <main className="page-transition">{children}</main>
-  );
+  return <main className="page-transition">{children}</main>;
 }
