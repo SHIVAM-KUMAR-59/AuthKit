@@ -45,11 +45,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             }}
           />
           <div
-            className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-[140px] opacity-20"
+            className="absolute -top-32 -left-32 w-125 h-125 rounded-full blur-[140px] opacity-20"
             style={{ backgroundColor: 'var(--primary)' }}
           />
           <div
-            className="absolute bottom-0 -right-48 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10"
+            className="absolute bottom-0 -right-48 w-100 h-100 rounded-full blur-[120px] opacity-10"
             style={{ backgroundColor: 'var(--primary)' }}
           />
         </div>
