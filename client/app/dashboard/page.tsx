@@ -35,11 +35,8 @@ const Page = () => {
     : "?";
 
   return (
-    <div
-      className="page-transition min-h-screen flex items-center justify-center p-4"
-      style={{ backgroundColor: "var(--background)" }}
-    >
-      <div className="w-full max-w-sm">
+    <div className="page-transition flex items-center justify-center p-4">
+      <div className="w-full max-w-sm md:min-w-md">
         {/* Card */}
         <div
           className="relative rounded-2xl overflow-hidden"

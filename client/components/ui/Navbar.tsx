@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const AuthNavbar = () => {
+const Navbar = () => {
   return (
     <nav className="w-full max-w-sm md:max-w-lg mx-auto flex items-center justify-between">
       <div className="flex items-center gap-2.5">
@@ -42,4 +42,4 @@ const AuthNavbar = () => {
   );
 };
 
-export default AuthNavbar;
+export default Navbar;

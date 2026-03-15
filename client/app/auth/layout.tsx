@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import AuthNavbar from "@/components/auth/AuthNavbar";
 import { useToast } from "@/context/ToastContext";
 import Loader from "@/components/ui/Loader";
 import "../globals.css";
+import Navbar from "@/components/ui/Navbar";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const { status } = useSession();
@@ -56,7 +56,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
       {/* Page */}
       <div className="min-h-screen flex flex-col px-4 py-6">
-        <AuthNavbar />
+        <Navbar />
         <main className="flex-1 flex items-center justify-center">{children}</main>
       </div>
     </>
