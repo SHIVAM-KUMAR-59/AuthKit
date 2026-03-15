@@ -22,6 +22,8 @@ const SMTP = {
 };
 
 const REDIS_URL = process.env.REDIS_URL;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const DOMAIN = process.env.DOMAIN;
 
 export {
   NODE_ENV,
@@ -33,4 +35,6 @@ export {
   AUTH_PROVIDERS,
   SMTP,
   REDIS_URL,
+  RESEND_API_KEY,
+  DOMAIN,
 };

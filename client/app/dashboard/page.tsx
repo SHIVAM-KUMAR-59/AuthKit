@@ -40,7 +40,6 @@ const Page = () => {
       style={{ backgroundColor: "var(--background)" }}
     >
       <div className="w-full max-w-sm">
-
         {/* Card */}
         <div
           className="relative rounded-2xl overflow-hidden"
@@ -50,10 +49,7 @@ const Page = () => {
           }}
         >
           {/* Header band */}
-          <div
-            className="h-24 relative"
-            style={{ backgroundColor: "var(--hover)" }}
-          >
+          <div className="h-24 relative" style={{ backgroundColor: "var(--hover)" }}>
             {/* Primary colour accent stripe at very top */}
             <div
               className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
@@ -113,25 +109,19 @@ const Page = () => {
             </h2>
 
             {session?.user?.email && (
-              <p
-                className="text-sm mt-1 truncate"
-                style={{ color: "var(--text-secondary)" }}
-              >
+              <p className="text-sm mt-1 truncate" style={{ color: "var(--text-secondary)" }}>
                 {session.user.email}
               </p>
             )}
 
             {/* Divider */}
-            <div
-              className="my-5"
-              style={{ borderTop: "1px solid var(--border)" }}
-            />
+            <div className="my-5" style={{ borderTop: "1px solid var(--border)" }} />
 
             {/* Sign out button */}
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className="w-full py-2.5 px-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="cursor-pointer w-full py-2.5 px-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: "transparent",
                 color: signingOut ? "var(--text-secondary)" : "var(--error)",
@@ -172,9 +162,7 @@ const Page = () => {
                       d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
                     />
                   </svg>
-                  <span style={{ color: "var(--text-secondary)" }}>
-                    Signing out…
-                  </span>
+                  <span style={{ color: "var(--text-secondary)" }}>Signing out…</span>
                 </>
               ) : (
                 <>
@@ -197,15 +185,6 @@ const Page = () => {
             </button>
           </div>
         </div>
-
-        {/* Footer note */}
-        <p
-          className="text-center text-xs mt-4"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          Signed in via{" "}
-          {session?.user?.email?.split("@")[1] ?? "provider"}
-        </p>
       </div>
     </div>
   );

@@ -140,10 +140,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
               <FileText className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1
-                className="text-xl font-bold font-mono"
-                style={{ color: "var(--text-primary)" }}
-              >
+              <h1 className="text-xl font-bold font-mono" style={{ color: "var(--text-primary)" }}>
                 {isSignup ? "Create your account" : "Welcome back"}
               </h1>
               <p className="text-xs font-mono mt-1" style={{ color: "var(--text-secondary)" }}>
@@ -216,23 +213,15 @@ const AuthForm = ({ mode }: AuthFormProps) => {
 
           {/* OAuth */}
           <div className="space-y-2.5">
-            <GoogleButton
-              onclick={handleGoogle}
-              loading={loading.google}
-              disabled={isAnyLoading}
-            />
-            <GithubButton
-              onclick={handleGithub}
-              loading={loading.github}
-              disabled={isAnyLoading}
-            />
+            <GoogleButton onclick={handleGoogle} loading={loading.google} disabled={isAnyLoading} />
+            <GithubButton onclick={handleGithub} loading={loading.github} disabled={isAnyLoading} />
           </div>
 
           {/* Footer */}
           <p className="text-center text-xs font-mono" style={{ color: "var(--text-secondary)" }}>
             {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-            
-            <a  href={isSignup ? "/auth/login" : "/auth/signup"}
+            <a
+              href={isSignup ? "/auth/login" : "/auth/signup"}
               className="font-semibold transition-colors"
               style={{ color: "var(--primary)" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.8")}

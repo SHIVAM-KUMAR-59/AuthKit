@@ -18,9 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-          <SessionContext>
-            <ServerToastProvider>{children}</ServerToastProvider>
-          </SessionContext>
+        <SessionContext>
+          <ServerToastProvider>{children}</ServerToastProvider>
+        </SessionContext>
       </body>
     </html>
   );
