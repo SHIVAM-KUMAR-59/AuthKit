@@ -22,6 +22,7 @@ Full-stack authentication starter with **Next.js** + **Express** + **Supabase** 
 - [Environment Variables](#environment-variables)
 - [Auth Flows](#auth-flows)
 - [API Reference](#api-reference)
+- [Email Setup](#email-setup)
 - [Contributing](#contributing)
 
 ---
@@ -34,7 +35,7 @@ Full-stack authentication starter with **Next.js** + **Express** + **Supabase** 
 - **OTP Expiry** — OTPs stored in Redis with a 10-minute TTL
 - **JWT Sessions** — stateless sessions via NextAuth JWT strategy
 - **Prisma + Supabase** — type-safe database access on PostgreSQL
-- **Nodemailer** — transactional OTP emails
+- **Nodemailer (dev) + Resend (prod)** — Nodemailer locally, Resend in production
 - **Role-based** — `USER` and `ADMIN` roles baked in
 - **Prettier** — consistent formatting on both frontend and backend
 - **Fully typed** — end-to-end TypeScript with no `any` shortcuts
@@ -49,7 +50,8 @@ Full-stack authentication starter with **Next.js** + **Express** + **Supabase** 
 | **Backend** | Node.js, Express 5, TypeScript, ts-node-dev |
 | **Database** | PostgreSQL (Supabase), Prisma ORM |
 | **Cache / OTP** | Redis (ioredis) |
-| **Email** | Nodemailer |
+| **Email (dev)** | Nodemailer (local SMTP) |
+| **Email (prod)** | Resend |
 | **Auth** | NextAuth.js (Google, GitHub, Credentials) |
 | **Code Style** | Prettier |
 
@@ -128,7 +130,8 @@ authkit/
 - A [Redis](https://redis.io) instance — local or [Upstash](https://upstash.com) (free tier)
 - Google OAuth credentials — [Google Cloud Console](https://console.cloud.google.com)
 - GitHub OAuth credentials — [GitHub Developer Settings](https://github.com/settings/developers)
-- An SMTP email account (Gmail works)
+- **Locally:** an SMTP email account (Gmail works)
+- **In production:** a [Resend](https://resend.com) account with a verified domain
 
 ---
 
@@ -145,7 +148,7 @@ npm install
 .env
 ```
 
-Fill in your `.env` — see [Environment Variables](#-environment-variables).
+Fill in your `.env` — see [Environment Variables](#environment-variables).
 ```bash
 npx prisma migrate dev --name init
 npm run dev
@@ -159,7 +162,7 @@ cd server # if you are not in server already
 redis-server
 ```
 
-Redis runs on `PORT: 637`
+Redis runs on `PORT: 6379`
 
 ### 4. Setup the frontend
 ```bash
@@ -196,10 +199,14 @@ REDIS_URL=redis://127.0.0.1:6379
 JWT_SECRET=your_jwt_secret_here
 JWT_EXPIRES_IN=7d
 
-# Email — Nodemailer
+# Email — Nodemailer (development only)
 SMTP_PORT=587
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_app_password
+
+# Email — Resend (production)
+RESEND_API_KEY=re_your_resend_api_key
+DOMAIN=https://yourdomain.com
 ```
 
 ### Frontend — `client/.env.local`
@@ -220,7 +227,7 @@ GITHUB_SECRET=your_github_client_secret
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8000/api/v1
 ```
 
-> **Gmail tip:** Use an [App Password](https://support.google.com/accounts/answer/185833) instead of your real password for `SMTP_PASS`.
+> **Gmail tip:** Use an [App Password](https://support.google.com/accounts/answer/185833) instead of your real password for `EMAIL_PASS`.
 
 ---
 
@@ -318,6 +325,44 @@ enum AuthProvider {
   EMAIL
 }
 ```
+
+---
+
+## Email Setup
+
+This project uses **Resend** in production and has **Nodemailer** code commented out in `mail.config.ts` for local reference.
+
+### Production — Resend
+**Render and most cloud platforms block outbound SMTP ports (465, 587)**, which means Nodemailer will silently fail or throw connection errors in production on these platforms.
+
+To use Resend, add your API key and domain to `server/.env`:
+```env
+RESEND_API_KEY=re_your_resend_api_key
+DOMAIN=https://yourdomain.com
+```
+
+Resend is configured in `mail.config.ts` and is active by default.
+
+> **Resend domain tip:** You need to verify your domain in the Resend dashboard and add the required DNS records before emails will send. If you don't have a domain yet, Resend provides a shared `onboarding@resend.dev` address for testing — but this only sends to your own verified email.
+
+### Development — Nodemailer (optional)
+The Nodemailer setup is kept as commented code in `mail.config.ts` for reference. If you're deploying to a platform that doesn't block SMTP ports (Railway, Fly.io, a VPS), you can uncomment it and set the following in your `.env`:
+```env
+SMTP_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
+```
+
+> **Gmail tip:** Use an [App Password](https://support.google.com/accounts/answer/185833) instead of your real password for `EMAIL_PASS`.
+
+### Alternative providers
+If you don't want to use Resend or Nodemailer, other transactional email providers that work on Render and similar platforms:
+
+| Provider | Free Tier |
+|----------|-----------|
+| **SendGrid** | 100 emails/day |
+| **Mailgun** | 1,000 emails/month |
+| **Brevo** | 300 emails/day |
 
 ---
 
