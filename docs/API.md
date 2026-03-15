@@ -1,6 +1,6 @@
 ## API Reference
 
-Base URL: `https://authkit-zm0k.onrender.com/api/v1`
+Base URL: `https://authkit-zm0k.onrender.com/api/v1` or `http://localhost:8000/api/v1`
 
 ---
 
