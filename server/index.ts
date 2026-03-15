@@ -9,7 +9,7 @@ import errorHandlerMiddleware from "./middleware/error.middleware";
 const app = express();
 
 app.options(
-  "*",
+  "(.*)",
   cors({
     origin: ALLOWED_ORIGINS,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
