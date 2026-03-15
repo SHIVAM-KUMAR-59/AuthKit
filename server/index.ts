@@ -8,13 +8,25 @@ import errorHandlerMiddleware from "./middleware/error.middleware";
 
 const app = express();
 
-app.use(
+app.options(
+  "*",
   cors({
-    origin: ALLOWED_ORIGINS.filter((origin): origin is string => origin !== undefined),
+    origin: ALLOWED_ORIGINS,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
+
+app.use(
+  cors({
+    origin: ALLOWED_ORIGINS,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use(loggerMiddleware);

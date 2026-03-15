@@ -6,7 +6,9 @@ dotenv.config();
 const NODE_ENV = process.env.NODE_ENV || "development";
 const PORT = Number(process.env.PORT) || 8000;
 
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ?? ["http://localhost:3000"];
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ?? [
+  "http://localhost:3000",
+];
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 const JWT_EXPIRY_TIME: StringValue = (process.env.JWT_EXPIRY_TIME || "7d") as StringValue;
