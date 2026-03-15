@@ -21,8 +21,8 @@ Full-stack authentication starter with **Next.js** + **Express** + **Supabase** 
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
 - [Auth Flows](#auth-flows)
-- [API Reference](#api-reference)
 - [Email Setup](#email-setup)
+- [Documentation](#documentation)
 - [Contributing](#contributing)
 
 ---
@@ -266,68 +266,6 @@ User enters email
 
 ---
 
-## API Reference
-
-### Auth Routes — `/api/v1/auth`
-
-| Method | Endpoint | Body | Description |
-|--------|----------|------|-------------|
-| `POST` | `/register` | `{ name, email, provider, imageUrl }` | OAuth user upsert |
-| `POST` | `/send-otp` | `{ email, isSignup }` | Send OTP to email |
-| `POST` | `/email` | `{ name?, email, otp, isSignup }` | Verify OTP + login/signup |
-
-### Responses
-
-**Success**
-```json
-{
-  "success": true,
-  "message": "Logged in successfully",
-  "data": {
-    "token": "eyJhbGci...",
-    "name": "John Doe",
-    "email": "john@example.com"
-  }
-}
-```
-
-**Error**
-```json
-{
-  "success": false,
-  "message": "OTP expired or not found"
-}
-```
-
----
-
-## Database Schema
-```prisma
-model User {
-  id        String       @id @default(uuid())
-  name      String?
-  email     String       @unique
-  imageUrl  String?
-  provider  AuthProvider
-  role      UserRole     @default(USER)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-}
-
-enum UserRole {
-  USER
-  ADMIN
-}
-
-enum AuthProvider {
-  GOOGLE
-  GITHUB
-  EMAIL
-}
-```
-
----
-
 ## Email Setup
 
 This project uses **Resend** in production and has **Nodemailer** code commented out in `mail.config.ts` for local reference.
@@ -363,6 +301,17 @@ If you don't want to use Resend or Nodemailer, other transactional email provide
 | **SendGrid** | 100 emails/day |
 | **Mailgun** | 1,000 emails/month |
 | **Brevo** | 300 emails/day |
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [`docs/API.md`](docs/API.md) | Full API reference — endpoints, request bodies, responses, error codes |
+| [`docs/SCHEMA.md`](docs/SCHEMA.md) | Database schema — models, fields, enums |
+
+> Tip: If you're integrating AuthKit into your own project, start with the API reference. If you're modifying the data model, check the schema docs first.
 
 ---
 
