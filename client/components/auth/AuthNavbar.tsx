@@ -1,27 +1,42 @@
 "use client";
 
-import { FileText } from "lucide-react";
-import ThemeToggle from "../ui/ThemeToggle";
 import Link from "next/link";
 
 export default function AuthNavbar() {
   return (
-    <nav className="w-full border-b border-(--border) bg-(--background)">
-      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        {/* Logo */}
+    <nav className="w-full max-w-sm md:max-w-lg mx-auto flex items-center justify-between">
+      <div className="flex items-center gap-2.5">
+        <div
+          className="w-6 h-6 rotate-45 flex items-center justify-center border"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <div className="w-2 h-2 rotate-45" style={{ backgroundColor: 'var(--primary)' }} />
+        </div>
         <Link
           href={"/"}
-          className="flex items-center gap-2 font-semibold text-(--text-primary) text-lg"
+          className="text-sm tracking-[0.3em] uppercase"
+          style={{ color: 'var(--text-secondary)' }}
         >
-          <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-(--primary)">
-            <FileText className="w-6 h-6 text-white" />
-          </div>
-          Draftly
+          Authkit
         </Link>
-
-        {/* Theme Toggle */}
-        <ThemeToggle />
       </div>
+      
+       <a href="https://github.com/SHIVAM-KUMAR-59/authkit"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[11px] tracking-[0.2em] uppercase px-3 py-1.5 transition-colors border rounded-md"
+        style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.color = 'var(--text-primary)';
+          (e.currentTarget as HTMLElement).style.borderColor = 'var(--text-secondary)';
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)';
+          (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)';
+        }}
+      >
+        GitHub →
+      </a>
     </nav>
   );
 }

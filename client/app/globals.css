@@ -1,20 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --primary:        #2563EB;
-  --primary-hover:  #1D4ED8;
-  --background:     #F8FAFC;
-  --canvas:         #FFFFFF;
-  --text-primary:   #0F172A;
-  --text-secondary: #64748B;
-  --border:         #E2E8F0;
-  --hover:          #F1F5F9;
-  --success:        #22C55E;
-  --warning:        #F59E0B;
-  --error:          #EF4444;
-}
-
-.dark {
   --primary:        #3B82F6;
   --primary-hover:  #60A5FA;
   --background:     #09090B;
@@ -27,7 +13,6 @@
   --warning:        #F59E0B;
   --error:          #EF4444;
 }
-
 
 body {
   background-color: var(--background);
