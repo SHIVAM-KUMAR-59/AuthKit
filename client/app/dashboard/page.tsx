@@ -121,24 +121,6 @@ const Page = () => {
               </p>
             )}
 
-            {/* Active session badge */}
-            <div className="flex justify-center mt-3">
-              <span
-                className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full font-medium"
-                style={{
-                  backgroundColor: "var(--hover)",
-                  color: "var(--text-secondary)",
-                  border: "1px solid var(--border)",
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: "var(--success)" }}
-                />
-                Active session
-              </span>
-            </div>
-
             {/* Divider */}
             <div
               className="my-5"
