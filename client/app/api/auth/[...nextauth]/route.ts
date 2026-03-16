@@ -53,7 +53,6 @@ const handler = NextAuth({
             otp: credentials.otp,
             isSignup: credentials.isSignup === "true",
           });
-          console.log(response);
 
           const { token, name, email } = response.data.data;
           if (!token) return null;
@@ -65,7 +64,6 @@ const handler = NextAuth({
             backendToken: token,
           };
         } catch (err) {
-          console.error(err);
           return null;
         }
       },
