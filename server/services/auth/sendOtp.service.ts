@@ -23,7 +23,6 @@ const sendOtpService = async ({ email, isSignup }: { email: string; isSignup: bo
     const html = getOtpEmailTemplate(otp);
 
     await redis.set(`otp:${email}`, otp, "EX", 600);
-    const check = await redis.get(`otp:${email}`);
 
     await sendMail({
       to: email,
