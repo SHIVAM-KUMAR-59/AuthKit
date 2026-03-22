@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import { signIn } from "next-auth/react";
 import GoogleButton from "@/components/auth/GoogleButton";
 import GithubButton from "@/components/auth/GithubButton";
@@ -178,7 +178,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
             <button
               onClick={handleEmail}
               disabled={isAnyLoading || !isEmailReady}
-              className="w-full py-2.5 rounded-md text-sm font-mono font-semibold text-white transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-2.5 rounded-md text-sm font-mono font-semibold text-white cursor-pointer transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ backgroundColor: "var(--primary)" }}
               onMouseEnter={(e) => {
                 if (!isAnyLoading && isEmailReady)
@@ -194,7 +194,10 @@ const AuthForm = ({ mode }: AuthFormProps) => {
                   Sending OTP...
                 </>
               ) : (
-                "Continue with Email →"
+                <p className="flex items-center justify-center gap-1">
+                  Continue with Email
+                  <ArrowRight size={15} />
+                </p>
               )}
             </button>
           </div>

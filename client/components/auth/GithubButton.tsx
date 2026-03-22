@@ -20,7 +20,7 @@ const GithubButton = ({
       ) : (
         <Github className="w-4 h-4" />
       )}
-      {loading ? "Signing in..." : "Continue with GitHub"}
+      {loading ? "Connecting to github..." : "Continue with GitHub"}
     </button>
   );
 };

@@ -35,7 +35,7 @@ const GoogleButton = ({
           />
         </svg>
       )}
-      {loading ? "Signing in..." : "Continue with Google"}
+      {loading ? "Connecting to google..." : "Continue with Google"}
     </button>
   );
 };
